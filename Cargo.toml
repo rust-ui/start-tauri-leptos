@@ -1,0 +1,53 @@
+[workspace]
+resolver = "2"
+members = ["app", "frontend", "server", "src-tauri"]
+
+[workspace.package]
+license = "MIT"
+authors = ["Rustify"]
+
+
+# need to be applied only to wasm build
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 'z'
+
+[workspace.dependencies]
+leptos = { version = "0.8.2" }
+leptos_meta = { version = "0.8.2" }
+leptos_router = { version = "0.8.2" }
+leptos_axum = { version = "0.8.2" }
+
+axum = "0.8.4"
+cfg-if = "1.0.0"
+console_error_panic_hook = "0.1.7"
+console_log = "1.0.0"
+http = "1.3.1"
+log = "0.4.27"
+simple_logger = "5.0.0"
+thiserror = "2.0.12"
+tokio = { version = "1.45.0", features = ["full"] }
+tower = { version = "0.5.2", features = ["full"] }
+tower-http = { version = "0.6.4", features = ["full"] }
+wasm-bindgen = "0.2"
+
+
+
+[[workspace.metadata.leptos]]
+name = "app"
+bin-package = "server"
+lib-package = "frontend"
+site-root = "target/site"
+site-pkg-dir = "pkg"
+tailwind-input-file = "style/input.css"
+assets-dir = "public"
+site-addr = "127.0.0.1:3000"
+reload-port = 3001
+browserquery = "defaults"
+watch = false
+env = "DEV"
+bin-features = []
+bin-default-features = false
+lib-features = []
+lib-default-features = false
